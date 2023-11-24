@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
     echo "10.0.0.80  master" >> /etc/hosts
     echo "10.0.0.81  worker1" >> /etc/hosts
     echo "10.0.0.82  worker2" >> /etc/hosts
+    echo "10.0.0.83  worker3" >> /etc/hosts
   SHELL
     
   config.vm.define "master" do |master|
@@ -20,7 +21,7 @@ Vagrant.configure("2") do |config|
     master.vm.provision "shell", path: "scripts/master.sh"
   end
 
-  (1..2).each do |i|
+  (1..3).each do |i|
     config.vm.define "worker#{i}" do |worker|
       worker.vm.box = "ubuntu/bionic64"
       worker.vm.hostname = "worker#{i}"

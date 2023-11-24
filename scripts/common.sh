@@ -49,3 +49,8 @@ sudo systemctl start kubelet
 sudo systemctl enable kubelet   
 
 echo "Installation done..."
+
+# 默认127.0.0.53 存在解析域名失败的问题
+sed -i 's/127.0.0.53/114.114.114.114/g' /etc/resolv.conf
+
+cat /etc/resolv.conf

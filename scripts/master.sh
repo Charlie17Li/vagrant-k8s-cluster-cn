@@ -5,17 +5,18 @@ NODENAME=$(hostname -s)
 SERVICE_CIDR="10.96.0.0/12"
 POD_CIDR="10.244.0.0/16"
 KUBE_VERSION=v1.21.1
+IMAGE_REPO=registry.cn-hangzhou.aliyuncs.com/google_containers
 
 # preload coredns for special handling
 COREDNS_VERSION=1.8.0
-sudo docker pull registry.aliyuncs.com/google_containers/coredns:$COREDNS_VERSION
-sudo docker tag registry.aliyuncs.com/google_containers/coredns:$COREDNS_VERSION registry.aliyuncs.com/google_containers/coredns/coredns:v$COREDNS_VERSION
+sudo docker pull $IMAGE_REPO/coredns:$COREDNS_VERSION
+sudo docker tag $IMAGE_REPO/coredns:$COREDNS_VERSION $IMAGE_REPO/coredns/coredns:v$COREDNS_VERSION
 
 # kubeadm init
 sudo kubeadm init \
   --kubernetes-version=$KUBE_VERSION \
   --apiserver-advertise-address=$MASTER_IP \
-  --image-repository=registry.aliyuncs.com/google_containers \
+  --image-repository=$IMAGE_REPO \
   --service-cidr=$SERVICE_CIDR \
   --pod-network-cidr=$POD_CIDR \
   --node-name=$NODENAME \
@@ -41,8 +42,8 @@ sudo chmod +x $config_path/join.sh
 kubeadm token create --print-join-command > $config_path/join.sh
 
 # install calico network plugin
-sudo wget https://docs.projectcalico.org/manifests/calico.yaml
-sudo kubectl apply -f calico.yaml
+# sudo wget https://docs.projectcalico.org/manifests/calico.yaml
+# sudo kubectl apply -f calico.yaml
 
 sudo -i -u vagrant bash << EOF
 mkdir -p /home/vagrant/.kube
