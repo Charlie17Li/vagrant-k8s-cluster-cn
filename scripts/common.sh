@@ -11,6 +11,10 @@ echo "Swap diasbled..."
 # disable firewall
 sudo ufw disable
 
+# 默认127.0.0.53 存在解析域名失败的问题(mac上有这个问题，但是windows下测试没有这个问题)
+sed -i 's/127.0.0.53/114.114.114.114/g' /etc/resolv.conf
+cat /etc/resolv.conf
+
 # install dependencies
 sudo apt-get update -y
 sudo apt-get install -y apt-transport-https ca-certificates curl wget software-properties-common
@@ -49,8 +53,3 @@ sudo systemctl start kubelet
 sudo systemctl enable kubelet   
 
 echo "Installation done..."
-
-# 默认127.0.0.53 存在解析域名失败的问题
-sed -i 's/127.0.0.53/114.114.114.114/g' /etc/resolv.conf
-
-cat /etc/resolv.conf

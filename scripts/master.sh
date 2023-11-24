@@ -42,8 +42,9 @@ sudo chmod +x $config_path/join.sh
 kubeadm token create --print-join-command > $config_path/join.sh
 
 # install calico network plugin
-# sudo wget https://docs.projectcalico.org/manifests/calico.yaml
-# sudo kubectl apply -f calico.yaml
+# sudo wget https://docs.projectcalico.org/manifests/calico.yaml（被墙了）
+sudo kubectl apply -f calico.yaml
+# sudo kubectl apply -f kube-flannel.yml  # 这玩意儿有问题？（测试发现使用flannel ping 不通 coredns）
 
 sudo -i -u vagrant bash << EOF
 mkdir -p /home/vagrant/.kube

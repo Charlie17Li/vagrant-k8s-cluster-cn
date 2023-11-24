@@ -1,0 +1,4 @@
+# 用于部署deepflow
+# helm install deepflow -n deepflow deepflow/deepflow --create-namespace -f values-custom.yaml
+global:
+  allInOneLocalStorage: true
