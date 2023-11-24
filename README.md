@@ -1,3 +1,10 @@
+> 参考该[仓库代码](https://gitee.com/bambrow/vagrant-k8s-cluster-cn), 该仓库代码在 windows 上完美运行，但是在 mac 上存在若干问题
+> 于是根据需求做出适配
+> - 问题 1：Docker查询获取镜像报错 Error response from daemon：lookup index.docker.io on 127.0.1.1:53: server misbehaving
+> - 解决 1：[link](https://blog.csdn.net/han73748196/article/details/108057328) 修改默认的 dns 服务器地址
+
+
+
 # Vagrant Kubernetes Cluster (CN)
 
 本项目演示如何使用Vagrant搭建Kubernetes集群，并针对国内的网络环境做了优化。请在使用前先安装[VirtualBox](https://www.virtualbox.org/wiki/Downloads)与[Vagrant](https://www.vagrantup.com/docs/installation)。
