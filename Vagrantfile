@@ -28,8 +28,8 @@ Vagrant.configure("2") do |config|
       worker.vm.hostname = "worker#{i}"
       worker.vm.network "private_network", ip: "10.0.0.8#{i}"
       worker.vm.provider "virtualbox" do |vb|
-        vb.memory = 2048
-        vb.cpus = 1
+        vb.memory = 4096
+        vb.cpus = 2
       end
       worker.vm.provision "shell", path: "scripts/common.sh"
       worker.vm.provision "shell", path: "scripts/worker.sh"
