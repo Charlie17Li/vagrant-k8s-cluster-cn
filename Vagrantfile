@@ -17,6 +17,9 @@ Vagrant.configure("2") do |config|
       vb.memory = 4096
       vb.cpus = 2
     end
+    master.vm.provision "file", source: "runc.amd64", destination: "runc.amd64"
+    master.vm.provision "file", source: "cni-plugins-linux-amd64-v1.1.1.tgz", destination: "cni-plugins-linux-amd64-v1.1.1.tgz"
+    master.vm.provision "file", source: "containerd-1.7.0-linux-amd64.tar.gz", destination: "containerd-1.7.0-linux-amd64.tar.gz"
     master.vm.provision "file", source: "calico.yaml", destination: "calico.yaml"
     master.vm.provision "shell", path: "scripts/common.sh"
     master.vm.provision "shell", path: "scripts/master.sh"
@@ -31,6 +34,9 @@ Vagrant.configure("2") do |config|
         vb.memory = 4096
         vb.cpus = 2
       end
+      worker.vm.provision "file", source: "runc.amd64", destination: "runc.amd64"
+      worker.vm.provision "file", source: "cni-plugins-linux-amd64-v1.1.1.tgz", destination: "cni-plugins-linux-amd64-v1.1.1.tgz"
+      worker.vm.provision "file", source: "containerd-1.7.0-linux-amd64.tar.gz", destination: "containerd-1.7.0-linux-amd64.tar.gz"
       worker.vm.provision "shell", path: "scripts/common.sh"
       worker.vm.provision "shell", path: "scripts/worker.sh"
     end
