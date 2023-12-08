@@ -2,6 +2,8 @@
 > 于是根据需求做出适配
 > - 问题 1：Docker查询获取镜像报错 Error response from daemon：lookup index.docker.io on 127.0.1.1:53: server misbehaving
 > - 解决 1：[link](https://blog.csdn.net/han73748196/article/details/108057328) 修改默认的 dns 服务器地址
+> - 问题 2：1.21.1版本过旧，升级到 1.27.2
+> - 解决 2：参考：https://zhuanlan.zhihu.com/p/636831803
 
 
 
